@@ -1,5 +1,6 @@
 import {createBrowserRouter, createRoutesFromElements, RouterProvider, Route} from 'react-router-dom';
 import Home from './pages/Home';
+import Stocks from './pages/Stocks';
 
 const App = () => {
 
@@ -8,6 +9,7 @@ const App = () => {
     <Route>
       <Route index element={<Home />}/>
       <Route path='/home' element={<Home />}/>
+      <Route path='/stocks' element={<Stocks />}/>
     </Route>
     )
   );

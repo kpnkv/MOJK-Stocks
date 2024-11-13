@@ -1,13 +1,12 @@
 import Navbar from '../components/Navbar/Navbar';
 
-const Home = () => {
-
+const Stocks = () => {
   return (
     <div>
         <Navbar />
-        <h1>Home page</h1>
+        <h1>Stocks page</h1>
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Stocks
