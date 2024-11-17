@@ -2,6 +2,7 @@ import express from "express";
 import cors from 'cors'; 
 import mongoose from 'mongoose';
 import { mongoDBURL, PORT } from './config.js'
+import userRoute from './routes/userRoute.js'; 
 
 const app = express();
 
@@ -15,6 +16,8 @@ app.get('/', (request, response) =>{
     console.log(request)
     return response.status(234).send('Server is working');
 });
+
+app.use('/user', userRoute); 
 
 mongoose
     .connect(mongoDBURL)
