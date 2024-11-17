@@ -29,31 +29,6 @@ router.post('/', async (request, response) => {
     }
 } );
 
-// Retrieves user from data base
-router.post('/login', async (request, response) => {
-    const reqUser = request.body.username;
-    const reqPass = request.body.password;
-    const reqEmail = request.body.email;
-    try{
-            //Checks to see if submitted username exists
-        const searchedUser = await user.find({username : reqUser, password : reqPass, email : reqEmail});
-        console.log("You searched for: " + searchedUser);
-        if (searchedUser.length > 0){ 
-            return response.status(200).send({message: "Login Sucessful"});
-        } else{
-            return response.status(400).send({
-                message: 'Username, Password, or Email is invalid',
-              });
-        }
-
-    } catch(error){
-        console.log(error.message);
-        response.status(500).send({message: error.message});
-    }
-
-    
-})
-
 // deleting a user
 router.delete('/:id', async(request, response) => {
     try{
