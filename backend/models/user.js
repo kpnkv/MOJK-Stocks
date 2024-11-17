@@ -14,9 +14,11 @@ const userSchema = mongoose.Schema(
             type: String,
             required: true,
         },
-
+        stockList: {
+            type: [String],  
+            default: [], 
+        },
     },
 );
 
-
-export const user = mongoose.model('user', userSchema);
+export const User = mongoose.model('User', userSchema);
