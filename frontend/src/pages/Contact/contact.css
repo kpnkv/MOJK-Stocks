@@ -57,7 +57,7 @@
     box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
   }
   
-  button {
+  .send-message {
     background-color: #3498db;
     color: white;
     padding: 10px;
@@ -67,6 +67,6 @@
     cursor: pointer;
   }
   
-  button:hover {
+  .send-message:hover {
     background-color: #2980b9;
   }
