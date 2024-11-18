@@ -4,7 +4,6 @@ import Stocks from './pages/Stocks';
 import Profile from './pages/Profile/Profile';
 import Contact from './pages/Contact/Contact';
 
-
 const App = () => {
 
   const router = createBrowserRouter(
