@@ -2,7 +2,7 @@ import {createBrowserRouter, createRoutesFromElements, RouterProvider, Route} fr
 import Home from './pages/Home';
 import Stocks from './pages/Stocks';
 import Profile from './pages/Profile/Profile';
-import Contact from './pages/Contact';
+import Contact from './pages/Contact/Contact';
 
 const App = () => {
 

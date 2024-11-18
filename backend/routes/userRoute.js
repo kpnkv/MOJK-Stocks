@@ -1,5 +1,5 @@
 import express from 'express';
-import { user } from '../models/user.js';
+import { User } from '../models/user.js';
 
 const router = express.Router();
 
@@ -21,8 +21,8 @@ router.post('/', async (request, response) => {
             password: request.body.password,
         };
 
-        const User = await user.create(newUser);
-        return response.status(201).send(User); 
+        const createdUser = await User.create(newUser);
+        return response.status(201).send(createdUser); 
     } catch (error){
         console.log(error.message);
         response.status(500).send({message: error.message});
@@ -33,7 +33,7 @@ router.post('/', async (request, response) => {
 router.delete('/:id', async(request, response) => {
     try{
         const { id } = request.params;
-        const result = await user.findByIdAndDelete(id);
+        const result = await User.findByIdAndDelete(id);
         if(!result){
             response.status(404).json({ message: 'user not found'});
         }

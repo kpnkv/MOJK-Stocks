@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import { mongoDBURL, PORT } from './config.js'
 import userRoute from './routes/userRoute.js'; 
 import reportRoute from './routes/reportRoute.js'; 
+import contactRoute from './routes/contactRoute.js';
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.get('/', (request, response) =>{
 
 app.use('/user', userRoute); 
 app.use('/report', reportRoute);
+app.use("/contact", contactRoute);
 
 mongoose
     .connect(mongoDBURL)
