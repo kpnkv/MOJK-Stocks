@@ -2,6 +2,12 @@ import Navbar from '../../components/Navbar/Navbar';
 import "./profile.css";
 
 const Profile = () => {
+  const subscriptionStatus = "Free";
+
+  const handleUpgrade = () => {
+    alert("Upgrade Subscription button clicked!"); // Replace with actual upgrade logic
+  };
+
   return (
     <div>
       <Navbar />
@@ -10,7 +16,12 @@ const Profile = () => {
           <div className="profile-info">
             <div className="profile-text">
               <h1 className="profile-name">John Doe</h1>
-              <p className="subscription-status">Subscription Status: Active</p>
+              <p className="subscription-status">
+                Subscription Status: <span>{subscriptionStatus}</span>
+              </p>
+              <button className="upgrade-button" onClick={handleUpgrade}>
+                Upgrade Subscription
+              </button>
             </div>
           </div>
         </div>
