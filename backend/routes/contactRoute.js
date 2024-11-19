@@ -1,5 +1,7 @@
 import express from "express";
 import nodemailer from "nodemailer";
+import dotenv from "dotenv";
+dotenv.config();
 
 const router = express.Router();
 
@@ -15,8 +17,8 @@ router.post("/", async (req, res) => {
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "nodemailer6831@gmail.com", 
-        pass: "mmpwdviwecyrljaz",   
+        user: process.env.EMAIL_USER, 
+        pass: process.env.EMAIL_PASS,   
       },
     });
 
