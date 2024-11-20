@@ -23,7 +23,7 @@ router.post("/", async (req, res) => {
     });
 
     const mailOptions = {
-      from: email, 
+      from: process.env.EMAIL_USER, 
       to: process.env.EMAIL_USER, 
       subject: `Contact Form Submission from ${name}`,
       text: `
@@ -31,6 +31,8 @@ router.post("/", async (req, res) => {
         Email: ${email}
         Message: ${message}
       `,
+
+      replyTo: email,
     };
 
     await transporter.sendMail(mailOptions);
