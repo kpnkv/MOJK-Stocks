@@ -1,6 +1,6 @@
 import {createBrowserRouter, createRoutesFromElements, RouterProvider, Route} from 'react-router-dom';
 import Home from './pages/Home';
-import Stocks from './pages/Stocks';
+import Stocks from './pages/Stocks/Stocks';
 import Profile from './pages/Profile/Profile';
 import Contact from './pages/Contact/Contact';
 import Login from './pages/Login/Login';

@@ -15,7 +15,7 @@ const userSchema = mongoose.Schema(
             required: true,
         },
         stockList: {
-            type: [String],  
+            type: [{}],  
             default: [], 
         },
     },

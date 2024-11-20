@@ -60,6 +60,7 @@ const Login = () => {
 
   return (
     <>
+    <Navbar />
       {success ? (
         <section>
           <h1>You are Logged in!</h1>
@@ -70,7 +71,7 @@ const Login = () => {
         </section>
       ) : (
     <section>
-        <Navbar />
+        
 
         <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
         <h1>Login</h1>

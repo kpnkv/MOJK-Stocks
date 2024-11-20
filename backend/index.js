@@ -5,6 +5,8 @@ import userRoute from './routes/userRoute.js';
 import reportRoute from './routes/reportRoute.js'; 
 import contactRoute from './routes/contactRoute.js';
 import * as dotenv from "dotenv"
+import * as cheerio from 'cheerio';
+import axios from 'axios';
 
 
 dotenv.config();
@@ -25,6 +27,57 @@ app.get('/', (request, response) =>{
 app.use('/user', userRoute); 
 app.use('/report', reportRoute);
 app.use("/contact", contactRoute);
+
+let cachedStocks = null;
+let lastFetchTime = null;
+const oneHour = 60 * 60 * 1000; 
+
+app.get('/stocks', (request, response) => {
+  const currentTime = Date.now();
+  
+  
+  if (cachedStocks && currentTime - lastFetchTime < oneHour) {
+    console.log("Returning cached data...");
+    return response.json(cachedStocks); 
+  }
+
+  axios.get('https://finance.yahoo.com/lookup/')
+    .then((res) => {
+      const $ = cheerio.load(res.data);
+
+      const stocks = []; 
+
+      $('tbody.body.yf-paf8n5 tr').each((i, element) => {
+        const symbol = $(element).find('a.loud-link.fin-size-medium.yf-1e4diqp').text().trim();
+        const lastPriceText = $(element).find('td').eq(2).text().trim();
+        const lastPrice = lastPriceText.split(' ')[0]; 
+
+        const changeText = $(element).find('fin-streamer[data-test="colorChange"] span').text().trim();
+        const changePercentageMatch = changeText.match(/[+-]?\d+(\.\d+)?%/);
+
+        if (symbol && lastPrice && changePercentageMatch) {
+          const changePercentage = changePercentageMatch[0];
+
+          if (parseFloat(changePercentage) > 0) {
+            stocks.push({
+              symbol,
+              lastPrice,
+              changePercentage,
+            });
+          }
+        }
+      });
+
+      cachedStocks = stocks;
+      lastFetchTime = currentTime;
+
+      response.json(stocks);
+    })
+    .catch((err) => {
+      console.error('Error:', err);
+      response.status(500).json({ error: 'Failed to fetch data' });
+    });
+});
 
 mongoose
     .connect(process.env.URI)
