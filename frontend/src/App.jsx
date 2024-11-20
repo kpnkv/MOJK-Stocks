@@ -4,6 +4,8 @@ import Stocks from './pages/Stocks';
 import Profile from './pages/Profile/Profile';
 import Contact from './pages/Contact/Contact';
 import Login from './pages/Login/Login';
+import SignUp from './pages/SignUp/SignUp';
+
 
 const App = () => {
 
@@ -16,6 +18,7 @@ const App = () => {
       <Route path='/profile' element={<Profile/>}/>
       <Route path='/contact' element={<Contact/>}/>
       <Route path='/login' element={<Login/>}/>
+      <Route path='/SignUp' element={<SignUp/>}/>
     </Route>
     )
   );
