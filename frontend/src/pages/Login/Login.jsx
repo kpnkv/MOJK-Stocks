@@ -4,7 +4,7 @@ import AuthContext from "../Context/AuthProvider";
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SignUp from '../SignUp/SignUp';
-
+import './Login.css';
 import axios from '../Api/axios';
 const LOGIN_URL = '/auth';
 
@@ -61,6 +61,7 @@ const Login = () => {
   return (
     <>
     <Navbar />
+    <div class="login-form">
       {success ? (
         <section>
           <h1>You are Logged in!</h1>
@@ -105,7 +106,9 @@ const Login = () => {
         </p>
     </section>
       )}
+        </div>
       </>
+    
   );
 };
 

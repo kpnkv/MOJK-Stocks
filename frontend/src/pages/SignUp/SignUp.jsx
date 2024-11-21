@@ -4,6 +4,7 @@ import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from '../Api/axios';
 import { Link } from 'react-router-dom';
+import './SignUp.css';
 
 const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const USER_REGEX = /^[a-zA-Z][a-zA-z0-9-_]{3,23}$/;
@@ -106,6 +107,7 @@ const SignUp = () => {
 
   return (
     <>
+      <div class="signup-container">
       {success ? (
           <section>
               <h1>Success!</h1>
@@ -242,7 +244,8 @@ const SignUp = () => {
 
     </section>
       )}
-      </>
+      </div>
+    </>
   )
 }
 
