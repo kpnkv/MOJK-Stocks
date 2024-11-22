@@ -1,0 +1,61 @@
+.report_button {
+    position: absolute;  
+    top: 70px;           
+    left: 40px;          
+    background-color: #4CAF50; 
+    color: white;        
+    padding: 10px 20px;  
+    font-size: 16px;    
+    border: none;        
+    border-radius: 5px;  
+    cursor: pointer;    
+    transition: background-color 0.3s ease;
+  }
+  
+  .report_button:hover {
+    background-color: #45a049;
+  }
+  
+  .report_button:hover {
+    background-color: #45a049; 
+  }
+  
+  .report_form {
+    background-color: #f9f9f9; 
+    border-radius: 8px; 
+    padding: 20px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    max-width: 500px; 
+    margin: auto; 
+  }
+  
+  .report_form input,
+  .report_form textarea {
+    width: 100%; 
+    padding: 10px; 
+    margin-bottom: 15px; 
+    border: 1px solid #ccc;
+    border-radius: 5px; 
+    font-size: 14px; 
+  }
+  
+  .report_form textarea {
+    min-height: 120px;
+    resize: vertical; 
+  }
+  
+  .report_form button {
+    background-color: #007BFF; 
+    color: white; 
+    padding: 10px 20px; 
+    border: none;
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-size: 16px; 
+    width: 100%; 
+  }
+  
+  .report_form button:hover {
+    background-color: #0056b3; 
+  }
+

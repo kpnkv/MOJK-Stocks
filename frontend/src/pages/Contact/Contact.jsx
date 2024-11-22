@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./contact.css";
 import axios from "axios"; 
 import Navbar from "../../components/Navbar/Navbar"; 
+import Report from "../../components/Report/Report"; 
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -92,6 +93,7 @@ const Contact = () => {
           <button type="submit" className="send-message">Send Message</button>
         </form>
       </div>
+      <Report />
     </div>
   );
 };
