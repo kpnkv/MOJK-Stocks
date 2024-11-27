@@ -19,3 +19,13 @@
 20241127	16:46:52	0cd51397-c212-4570-a9c9-46a56e5da1e2	POST 	http://localhost:3000 	/auth
 20241127	16:49:00	10be4a9e-5a43-4d01-bbaa-72918f2c177f	OPTIONS 	http://localhost:3000 	/auth
 20241127	16:49:01	dda44440-fc09-4124-955d-a81e52347a0d	POST 	http://localhost:3000 	/auth
+20241127	18:07:15	814bb0b3-5446-4422-8587-441f821fd619	OPTIONS 	http://localhost:3000 	/auth
+20241127	18:07:15	d683e32d-7d72-4596-815f-0833db7e00d8	POST 	http://localhost:3000 	/auth
+20241127	18:08:49	c407d1c1-7564-40ff-b8eb-aa698b4216a6	OPTIONS 	http://localhost:3000 	/auth
+20241127	18:08:49	8e4aa58b-776c-4414-b11e-bda50630b24c	POST 	http://localhost:3000 	/auth
+20241127	18:08:53	1c168b0e-d445-45db-8c2f-d5324a6c1e14	GET 	http://localhost:3000 	/stocks
+20241127	18:08:54	0479b239-cbd6-48f5-bc51-c5e8f6d0d84d	GET 	http://localhost:3000 	/stocks
+20241127	18:13:40	b56a5a9b-ec7e-46a8-9aa2-b8ca0b13b5d4	OPTIONS 	http://localhost:3000 	/auth
+20241127	18:13:40	215bf42e-cb14-4397-b123-27c06b5af393	POST 	http://localhost:3000 	/auth
+20241127	18:15:33	8f482c98-e7ee-4e77-b42f-00ce97e9b1aa	OPTIONS 	http://localhost:3000 	/auth
+20241127	18:15:33	77ef0904-c233-4bc3-971d-f3259e04ad3b	POST 	http://localhost:3000 	/auth
