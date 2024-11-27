@@ -7,7 +7,9 @@ import contactRoute from './routes/contactRoute.js';
 import * as dotenv from "dotenv"
 import * as cheerio from 'cheerio';
 import axios from 'axios';
-
+import { logger, logEvents } from './middleware/logEvents.js';
+import SignUp from './routes/SignUp.js';
+import authRoutes from './routes/authRoutes.js';
 
 dotenv.config();
 
@@ -16,8 +18,24 @@ const app = express();
 // parses requests body
 app.use(express.json());
 
-// middleware for handling cors policy
-app.use(cors()); 
+//custom middleware logger
+app.use((req, res, next) => {
+  logEvents(`${req.method} \t${req.headers.origin} \t${req.url}`, 'reqLog.txt');
+  console.log(`${req.method} ${req.path}`);
+  next();
+})
+
+// Middleware for handling CORS policy
+const corsOptions = {
+  origin: 'http://localhost:3000', // Allow requests only from this origin
+  credentials: true, // Allow cookies and authorization headers
+};
+
+app.use(cors(corsOptions)); // Use the specified CORS options
+
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
+
 
 app.get('/', (request, response) =>{
     console.log(request)
@@ -27,6 +45,8 @@ app.get('/', (request, response) =>{
 app.use('/user', userRoute); 
 app.use('/report', reportRoute);
 app.use("/contact", contactRoute);
+app.use("/SignUp" , SignUp);
+app.use("/auth" , authRoutes);
 
 let cachedStocks = null;
 let lastFetchTime = null;

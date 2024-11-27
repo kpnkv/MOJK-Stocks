@@ -8,6 +8,7 @@ import SignUp from './pages/SignUp/SignUp';
 import PageNotFound from './pages/PageNotFound/PageNotFound';
 
 
+
 const App = () => {
 
   const router = createBrowserRouter(
@@ -28,7 +29,7 @@ const App = () => {
   return (
       <div className="App">
         <RouterProvider router = {router} />;
-    </div>
+      </div>
     );
 }
 

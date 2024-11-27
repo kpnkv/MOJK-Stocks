@@ -3,13 +3,14 @@ import { useRef, useState, useEffect } from 'react';
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from '../Api/axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './SignUp.css';
 
 const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const USER_REGEX = /^[a-zA-Z][a-zA-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-const SIGNUP_URL = '/SignUp';
+const SIGNUP_URL = 'http://localhost:8080/SignUp';
+
 
 const SignUp = () => {
   const emailRef = useRef();
@@ -72,42 +73,44 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // if button enabled with JS hack
     const v1 = EMAIL_REGEX.test(email);
     const v2 = USER_REGEX.test(user);
     const v3 = PWD_REGEX.test(pwd);
-    if(!v1 || !v2 || !v3){
-      setErrMsg("invalid Entry");
+    if (!v1 || !v2 || !v3) {
+      setErrMsg("Invalid Entry");
       return;
     }
     try {
-      const response = await axios.post(SIGNUP_URL,
+      const response = await axios.post(
+        SIGNUP_URL,
         JSON.stringify({ email, user, pwd }),
         {
-          headers: { 'Content-Type' : 'application/json'},
-          withCredentials: true
+          headers: { 'Content-Type': 'application/json' },
+          withCredentials: true,
         }
       );
       console.log(response.data);
-      //console.log(response.accessToken);
-      //console.log(JSON.stringify(response))
       setSuccess(true);
-      // clear input fields
+      setEmail('');
+      setUser('');
+      setPwd('');
+      setMatchPwd('');
     } catch (err) {
-        if (!err?.response) {
-          setErrMsg('No Server Response');
-        } else if (err.response?.status === 409) {
-          setErrMsg('Username Taken');
-        } else {
-          setErrMsg('Registration Failed')
-        }
-        errReff.current.focus();
+      if (!err?.response) {
+        setErrMsg('No Server Response');
+      } else if (err.response?.status === 409) {
+        setErrMsg('Username Taken');
+      } else {
+        setErrMsg('Registration Failed');
+      }
+      errRef.current?.focus();
     }
-  }
-
+  };
+  
   return (
     <>
-      <div class="signup-container">
+      <Navbar />
+      <div className="signup-container">
       {success ? (
           <section>
               <h1>Success!</h1>
