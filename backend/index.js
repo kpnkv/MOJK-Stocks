@@ -7,7 +7,6 @@ import contactRoute from './routes/contactRoute.js';
 import * as dotenv from "dotenv"
 import * as cheerio from 'cheerio';
 import axios from 'axios';
-import { logger, logEvents } from './middleware/logEvents.js';
 import SignUp from './routes/SignUp.js';
 import authRoutes from './routes/authRoutes.js';
 

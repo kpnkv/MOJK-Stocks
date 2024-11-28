@@ -73,7 +73,6 @@ router.post('/:userId/addStock', async (request, response) => {
   });
   
 
-  // Example backend route to fetch user details, including the stock list
 router.get('/:userId', async (req, res) => {
     try {
       const user = await User.findById(req.params.userId);
