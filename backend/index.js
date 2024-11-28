@@ -17,12 +17,6 @@ const app = express();
 // parses requests body
 app.use(express.json());
 
-//custom middleware logger
-app.use((req, res, next) => {
-  logEvents(`${req.method} \t${req.headers.origin} \t${req.url}`, 'reqLog.txt');
-  console.log(`${req.method} ${req.path}`);
-  next();
-})
 
 // Middleware for handling CORS policy
 const corsOptions = {
