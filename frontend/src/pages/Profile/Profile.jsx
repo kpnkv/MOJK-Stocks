@@ -1,11 +1,45 @@
+import { useContext, useEffect, useState } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
-import "./profile.css";
+import AuthContext from '../Context/AuthProvider'; 
+import axios from 'axios';
+import './profile.css';
 
 const Profile = () => {
-  const subscriptionStatus = "Free";
+  const { auth } = useContext(AuthContext); 
+  const [userStockList, setUserStockList] = useState([]);
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(null); 
+
+  
+  useEffect(() => {
+    const fetchUserStockList = async () => {
+      try {
+    
+        if (!auth?._id) {
+          console.error('User ID is missing from the auth context.');
+          return;
+        }
+
+      
+        const response = await axios.get(`http://localhost:8080/user/${auth._id}`);
+        setUserStockList(response.data.stockList);
+        setLoading(false); 
+      } catch (error) {
+        console.error('Error fetching user stock list:', error);
+        setError('Failed to fetch stock list');
+        setLoading(false);
+      }
+    };
+
+    if (auth?._id) {
+      fetchUserStockList();
+    }
+  }, [auth?._id]);
+
+  const subscriptionStatus = "Free"; 
 
   const handleUpgrade = () => {
-    alert("Upgrade Subscription button clicked!"); // Replace with actual upgrade logic
+    alert("Upgrade Subscription button clicked!"); 
   };
 
   return (
@@ -15,7 +49,7 @@ const Profile = () => {
         <div className="profile-header">
           <div className="profile-info">
             <div className="profile-text">
-              <h1 className="profile-name">John Doe</h1>
+              <h1 className="profile-name">{auth?.user}</h1> {/* Display the username */}
               <p className="subscription-status">
                 Subscription Status: <span>{subscriptionStatus}</span>
               </p>
@@ -29,10 +63,15 @@ const Profile = () => {
         <div className="profile-section">
           <h2>My Watchlist</h2>
           <div className="watchlist">
-            <div className="stock-card">AAPL - $210.00</div>
-            <div className="stock-card">AMZN - $142.10</div>
-            <div className="stock-card">TSLA - $310.20</div>
-            <div className="stock-card">MSFT - $400.99</div>
+            {userStockList.length > 0 ? (
+              userStockList.map((stock, index) => (
+                <div key={index} className="stock-card">
+                  <strong>{stock.symbol}</strong> - ${stock.price} {/* Display both symbol and price */}
+                </div>
+              ))
+            ) : (
+              <p>No stocks in your watchlist.</p>
+            )}
           </div>
         </div>
 
@@ -52,7 +91,7 @@ const Profile = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Profile
+export default Profile;

@@ -17,7 +17,7 @@ export const handleLogin = async (req, res) => {
         // Compare the provided password with the stored hash
         const match = await bcrypt.compare(pwd, foundUser.password);
         if (match) {
-            // Check if roles exist and filter them
+            // Check if roles exist and filter them (if applicable)
             const roles = foundUser.roles ? Object.values(foundUser.roles).filter(Boolean) : [];
 
             // Create access and refresh JWTs
@@ -41,8 +41,6 @@ export const handleLogin = async (req, res) => {
             // Save the refresh token with the current user in the database
             foundUser.refreshToken = refreshToken;
             const result = await foundUser.save();
-            console.log(result); // For debugging
-            console.log(roles);
 
             // Create a secure HttpOnly cookie for the refresh token
             res.cookie('jwt', refreshToken, {
@@ -52,8 +50,15 @@ export const handleLogin = async (req, res) => {
                 maxAge: 24 * 60 * 60 * 1000 // 1 day
             });
 
-            // Send the roles and access token back to the client
-            res.json({ roles, accessToken });
+            // Send user data (including email, stockList, and roles) and access token to the client
+            res.json({
+                user: foundUser.username,
+                email: foundUser.email,
+                stockList: foundUser.stockList,  // Including stock list in response
+                _id : foundUser._id,
+                accessToken,
+                message: "Login Successful"
+            });
 
         } else {
             res.status(401).json({ message: 'Unauthorized: Invalid username or password' });

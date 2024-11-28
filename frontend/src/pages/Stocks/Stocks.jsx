@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import AuthContext from '../Context/AuthProvider'; // Assuming you have an AuthContext for authentication
 import axios from 'axios';
 import Navbar from '../../components/Navbar/Navbar';
 import './Stocks.css'
@@ -7,6 +8,7 @@ const Stocks = () => {
   const [stocks, setStocks] = useState([]); 
   const [loading, setLoading] = useState(true); 
   const [error, setError] = useState(null); 
+  const { auth } = useContext(AuthContext); // Access auth data from context
 
   useEffect(() => {
     const fetchStocks = async () => {
@@ -24,8 +26,22 @@ const Stocks = () => {
     fetchStocks();
   }, []);
 
-  const handleAddStock = (stock) => {
-    alert(`Added ${stock.symbol} to your watchlist!`);
+  const handleAddStock = async (stock) => {
+    try {
+      const userId = auth._id; 
+      
+      const response = await axios.post(`http://localhost:8080/user/${userId}/addStock`, {
+        stockSymbol: stock.symbol, 
+        stockPrice: stock.lastPrice,
+      });
+
+      if (response.status === 200) {
+        alert('Stock added to your watchlist!');
+      }
+    } catch (error) {
+      console.error('Error adding stock to watchlist:', error);
+      alert('Error adding stock to watchlist');
+    }
   };
 
   if (loading) {
