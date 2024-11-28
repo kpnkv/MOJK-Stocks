@@ -1,91 +1,86 @@
 .StockList {
-    color: white;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    font-family: Arial, sans-serif;
-  }
-  
-  .StockList h2 {
-    text-align: center;
-    font-size: 24px;
-    margin-bottom: 20px;
-    font-weight: bold;
-    color: black;
-  }
-  
-  .stockItem {
-    background-color: #333; 
-    margin: 10px 0;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: transform 0.3s ease;
-    position: relative;
-  }
-  
-  .stockItem:hover {
-    transform: scale(1.03);
-  }
-  
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 40px;
+  padding: 50px;
+  background-color: #f8f9fa;
+  font-family: Arial, sans-serif;
+}
 
-  .stockContent {
-    flex-grow: 1;
-  }
-  
+.StockList h2 {
+  grid-column: 1 / -1; /* Header spans all columns */
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 40px;
+  font-weight: bold;
+  color: #333;
+}
 
-  .stockTitle {
-    font-size: 20px;
-    font-weight: bold;
-    color: #ecf0f1;
-    margin: 0;
-  }
-  
-  .StockListText {
-    font-size: 16px;
-    color: #ecf0f1;
-    margin: 5px 0;
-  }
-  
-  .StockListText.changePositive {
-    color: #27ae60;
-  }
-  
-  .StockListText.changeNegative {
-    color: #e74c3c;
-  }
-  
-  .addStockButton {
-    background-color: #f39c12;
-    color: white;
-    padding: 10px 20px;
-    font-size: 14px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  
-  .addStockButton:hover {
-    background-color: #e67e22;
-  }
-  
-  .StockList .loadingMessage {
-    font-size: 18px;
-    text-align: center;
-    color: #f39c12;
-  }
-  
-  .StockList .errorMessage {
-    font-size: 18px;
-    text-align: center;
-    color: #e74c3c;
-  }
-  
+.stockItem {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  transition: box-shadow 0.3s ease;
+}
+
+.stockItem:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.stockTitle {
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+  margin: 0 0 20px 0;
+}
+
+.StockListText {
+  font-size: 18px;
+  color: #555;
+  margin: 10px 0;
+}
+
+.StockListText.changePositive {
+  color: #27ae60;
+}
+
+.StockListText.changeNegative {
+  color: #e74c3c;
+}
+
+.addStockButton {
+  background-color: #007bff;
+  color: white;
+  padding: 14px 18px;
+  font-size: 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  align-self: flex-end;
+  transition: background-color 0.3s ease;
+}
+
+.addStockButton:hover {
+  background-color: #0056b3;
+}
+
+.StockList .loadingMessage,
+.StockList .errorMessage {
+  grid-column: 1 / -1; /* Messages span all columns */
+  font-size: 20px;
+  text-align: center;
+}
+
+.StockList .loadingMessage {
+  color: #007bff;
+}
+
+.StockList .errorMessage {
+  color: #e74c3c;
+}
