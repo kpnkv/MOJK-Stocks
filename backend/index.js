@@ -20,7 +20,7 @@ app.use(express.json());
 
 // Middleware for handling CORS policy
 const corsOptions = {
-  origin: 'http://localhost:3000', // Allow requests only from this origin
+  origin: `${process.env.FRONTEND_URL}`, // Allow requests only from this origin
   credentials: true, // Allow cookies and authorization headers
 };
 
@@ -96,7 +96,7 @@ mongoose
     .then(() => {
         console.log('App is connected to database')
         app.listen(process.env.PORT, () => {
-            console.log(`App is listening to port: ${process.env.PORT}`);
+            console.log(`App is listening to: ${process.env.PORT}`);
         })
     })
     .catch((error) => {
