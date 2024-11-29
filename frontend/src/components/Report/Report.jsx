@@ -10,7 +10,7 @@ const Report = () => {
   const handleSubmit = async (e) => {
       e.preventDefault();
 
-      axios.post('http://localhost:8080/report', {
+      axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/report`, {
         email: email,
         report_text: report_text
       })

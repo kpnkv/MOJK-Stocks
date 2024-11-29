@@ -25,7 +25,7 @@ const Contact = () => {
 
     try {
       // post request to the backend 
-      const response = await axios.post("http://localhost:8080/contact", formData);
+      const response = await axios.post(`${import.meta.env.REACT_APP_BACKEND_BASEURL}/contact`, formData);
 
       setSuccessMessage(response.data.message);
       setErrorMessage("");

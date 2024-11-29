@@ -13,7 +13,7 @@ const Stocks = () => {
   useEffect(() => {
     const fetchStocks = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/stocks');
+        const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/stocks`);
         setStocks(response.data); 
         setLoading(false); 
       } catch (error) {
@@ -30,7 +30,7 @@ const Stocks = () => {
     try {
       const userId = auth._id; 
       
-      const response = await axios.post(`http://localhost:8080/user/${userId}/addStock`, {
+      const response = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/user/${userId}/addStock`, {
         stockSymbol: stock.symbol, 
         stockPrice: stock.lastPrice,
       });

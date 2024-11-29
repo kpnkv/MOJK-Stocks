@@ -21,7 +21,7 @@ const Profile = () => {
         }
 
       
-        const response = await axios.get(`http://localhost:8080/user/${auth._id}`);
+        const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/user/${auth._id}`);
         setUserStockList(response.data.stockList);
         setLoading(false); 
       } catch (error) {

@@ -5,7 +5,7 @@ import axios from '../Api/axios';
 import './Login.css';
 import Navbar from '../../components/Navbar/Navbar';
 
-const LOGIN_URL = '/auth';
+const LOGIN_URL = `${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/auth`;
 
 const Login = () => {
   const { setAuth } = useContext(AuthContext);

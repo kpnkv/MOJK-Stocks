@@ -9,7 +9,7 @@ import './SignUp.css';
 const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const USER_REGEX = /^[a-zA-Z][a-zA-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-const SIGNUP_URL = 'http://localhost:8080/SignUp';
+const SIGNUP_URL = `${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/SignUp`;
 
 
 const SignUp = () => {
