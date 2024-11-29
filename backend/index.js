@@ -1,14 +1,15 @@
-import express from "express";
-import cors from 'cors'; 
-import mongoose from 'mongoose';
-import userRoute from './routes/userRoute.js'; 
-import reportRoute from './routes/reportRoute.js'; 
-import contactRoute from './routes/contactRoute.js';
-import * as dotenv from "dotenv"
-import * as cheerio from 'cheerio';
 import axios from 'axios';
+import * as cheerio from 'cheerio';
+import cors from 'cors';
+import * as dotenv from "dotenv";
+import express from "express";
+import mongoose from 'mongoose';
 import SignUp from './routes/SignUp.js';
 import authRoutes from './routes/authRoutes.js';
+import contactRoute from './routes/contactRoute.js';
+import newsletterRoute from './routes/newsLetterRoutes.js';
+import reportRoute from './routes/reportRoute.js';
+import userRoute from './routes/userRoute.js';
 
 dotenv.config();
 
@@ -26,7 +27,6 @@ const corsOptions = {
 
 app.use(cors(corsOptions)); // Use the specified CORS options
 
-app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
 
@@ -35,11 +35,12 @@ app.get('/', (request, response) =>{
     return response.status(234).send('Server is working');
 });
 
-app.use('/user', userRoute); 
+app.use('/user', userRoute);
 app.use('/report', reportRoute);
 app.use("/contact", contactRoute);
 app.use("/SignUp" , SignUp);
 app.use("/auth" , authRoutes);
+app.use("/contact", newsletterRoute);
 
 let cachedStocks = null;
 let lastFetchTime = null;
