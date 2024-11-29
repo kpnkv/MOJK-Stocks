@@ -7,7 +7,6 @@ import mongoose from 'mongoose';
 import SignUp from './routes/SignUp.js';
 import authRoutes from './routes/authRoutes.js';
 import contactRoute from './routes/contactRoute.js';
-import newsletterRoute from './routes/newsLetterRoutes.js';
 import reportRoute from './routes/reportRoute.js';
 import userRoute from './routes/userRoute.js';
 
@@ -40,7 +39,6 @@ app.use('/report', reportRoute);
 app.use("/contact", contactRoute);
 app.use("/SignUp" , SignUp);
 app.use("/auth" , authRoutes);
-app.use("/contact", newsletterRoute);
 
 let cachedStocks = null;
 let lastFetchTime = null;
