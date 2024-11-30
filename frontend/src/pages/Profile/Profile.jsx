@@ -48,6 +48,7 @@ const Profile = () => {
         _id: null,
         accessToken: null,
       });
+      setUserStockList([]); 
       alert('You have been logged out successfully.');
     } catch (error) {
       console.error('Error during logout:', error);
@@ -79,6 +80,7 @@ const Profile = () => {
         _id: null,
         accessToken: null,
       });
+      setUserStockList([]); 
     } catch (error) {
       console.error('Error deleting account:', error.response?.data || error.message);
       alert('Failed to delete account.');

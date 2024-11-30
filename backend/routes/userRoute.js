@@ -42,7 +42,7 @@ router.delete('/:id/delete', async (req, res) => {
     }
 
     const result = await user.deleteOne();
-    res.json({ message: `User ID ${id} deleted`, result });
+    res.json({ message: `User ID ${user.username} deleted`, result });
   } catch (err) {
     console.error('Error deleting user:', err);
     res.status(500).json({ message: 'An error occurred while deleting the user.' });
