@@ -1,4 +1,4 @@
-import User from '../model/User.js';
+import {User} from '../models/user.js';
 
 export const handleLogout = async (req, res) => {
     const cookies = req.cookies;

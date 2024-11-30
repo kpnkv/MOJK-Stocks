@@ -9,6 +9,7 @@ body {
   max-width: 1000px;
   margin: 0 auto;
   padding: 20px;
+  position: relative; /* Added for button placement */
 }
 
 .profile-header {
@@ -129,4 +130,40 @@ body {
 
 .upgrade-button:hover {
   background-color: #2980b9;
+}
+
+.logout-button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.logout-button:hover {
+  background-color: #2980b9;
+}
+
+.delete-account-button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  position: absolute;
+  top: 70px;
+  right: 20px;
+}
+
+.delete-account-button:hover {
+  background-color: #c0392b;
 }

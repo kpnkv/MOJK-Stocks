@@ -5,22 +5,19 @@ import axios from 'axios';
 import './profile.css';
 
 const Profile = () => {
-  const { auth } = useContext(AuthContext); 
+  const { auth, setAuth } = useContext(AuthContext); 
   const [userStockList, setUserStockList] = useState([]);
   const [loading, setLoading] = useState(true); 
   const [error, setError] = useState(null); 
 
-  
   useEffect(() => {
     const fetchUserStockList = async () => {
       try {
-    
         if (!auth?._id) {
           console.error('User ID is missing from the auth context.');
           return;
         }
 
-      
         const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/user/${auth._id}`);
         setUserStockList(response.data.stockList);
         setLoading(false); 
@@ -42,6 +39,53 @@ const Profile = () => {
     alert("Upgrade Subscription button clicked!"); 
   };
 
+  const handleLogout = () => {
+    try {
+      setAuth({
+        user: null,
+        email: null,
+        stockList: [],
+        _id: null,
+        accessToken: null,
+      });
+      alert('You have been logged out successfully.');
+    } catch (error) {
+      console.error('Error during logout:', error);
+      alert('Failed to log out.');
+    }
+  };
+
+  const handleDeleteAccount = async () => {
+    if (!auth?._id) {
+      alert('No user ID found.');
+      return;
+    }
+  
+    const confirmDelete = window.confirm(
+      'Are you sure you want to delete your account? This action cannot be undone.'
+    );
+  
+    if (!confirmDelete) return;
+  
+    try {
+      const response = await axios.delete(
+        `${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/user/${auth._id}/delete`
+      );
+      alert(response.data.message);
+      setAuth({
+        user: null,
+        email: null,
+        stockList: [],
+        _id: null,
+        accessToken: null,
+      });
+    } catch (error) {
+      console.error('Error deleting account:', error.response?.data || error.message);
+      alert('Failed to delete account.');
+    }
+  };
+  
+
   return (
     <div>
       <Navbar />
@@ -49,12 +93,18 @@ const Profile = () => {
         <div className="profile-header">
           <div className="profile-info">
             <div className="profile-text">
-              <h1 className="profile-name">{auth?.user}</h1> {/* Display the username */}
+              <h1 className="profile-name">{auth?.user}</h1>
               <p className="subscription-status">
                 Subscription Status: <span>{subscriptionStatus}</span>
               </p>
               <button className="upgrade-button" onClick={handleUpgrade}>
                 Upgrade Subscription
+              </button>
+              <button className="logout-button" onClick={handleLogout}>
+                Logout
+              </button>
+              <button className="delete-account-button" onClick={handleDeleteAccount}>
+                Delete Account
               </button>
             </div>
           </div>
@@ -66,7 +116,7 @@ const Profile = () => {
             {userStockList.length > 0 ? (
               userStockList.map((stock, index) => (
                 <div key={index} className="stock-card">
-                  <strong>{stock.symbol}</strong> - ${stock.price} {/* Display both symbol and price */}
+                  <strong>{stock.symbol}</strong> - ${stock.price}
                 </div>
               ))
             ) : (

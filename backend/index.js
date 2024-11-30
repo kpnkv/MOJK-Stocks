@@ -9,6 +9,7 @@ import authRoutes from './routes/authRoutes.js';
 import contactRoute from './routes/contactRoute.js';
 import reportRoute from './routes/reportRoute.js';
 import userRoute from './routes/userRoute.js';
+import logout from './routes/logout.js'
 
 dotenv.config();
 
@@ -39,6 +40,7 @@ app.use('/report', reportRoute);
 app.use("/contact", contactRoute);
 app.use("/SignUp" , SignUp);
 app.use("/auth" , authRoutes);
+app.use("/logout", logout);
 
 let cachedStocks = null;
 let lastFetchTime = null;
