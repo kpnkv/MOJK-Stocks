@@ -52,7 +52,7 @@ const Home = () => {
   const handleNewsletterSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${VITE_REACT_APP_BACKEND_BASEURL}/contact/newsletter`, {
+      const response = await axios.post(`${VITE_REACT_APP_BACKEND_BASEURL}/newsletter/newsletter`, {
         email: newsletterEmail,
         subscriptionType: 'newsletter'
       });
