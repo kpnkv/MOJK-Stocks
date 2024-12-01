@@ -3,8 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './SearchStocksStyles.css';
 
-const API_URL = import.meta.env.VITE_API_URL;
-
 const SearchStocks = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [stocks, setStocks] = useState([]);
@@ -17,7 +15,7 @@ const SearchStocks = () => {
         const fetchStocks = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get('${API_URL}/stocks');
+                const response = await axios.get(`${VITE_REACT_APP_BACKEND_BASEURL}/stocks`);
                 // Make sure we're handling the data structure correctly
                 if (response.data && Array.isArray(response.data)) {
                     setStocks(response.data);
