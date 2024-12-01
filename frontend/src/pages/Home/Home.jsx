@@ -16,7 +16,7 @@ const Home = () => {
   useEffect(() => {
     const fetchStocks = async () => {
       try {
-        const response = await axios.get(`${VITE_REACT_APP_BACKEND_BASEURL}/stocks`);
+        const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/stocks`);
         // Sort stocks by changePercentage
         const sortedStocks = response.data.sort((a, b) => {
           const aChange = parseFloat(a.changePercentage.replace('%', ''));
@@ -52,7 +52,7 @@ const Home = () => {
   const handleNewsletterSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${VITE_REACT_APP_BACKEND_BASEURL}/newsletter/newsletter`, {
+      const response = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/newsletter/newsletter`, {
         email: newsletterEmail,
         subscriptionType: 'newsletter'
       });

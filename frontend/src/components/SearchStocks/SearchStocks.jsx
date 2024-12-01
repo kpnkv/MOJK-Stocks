@@ -15,7 +15,7 @@ const SearchStocks = () => {
         const fetchStocks = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get(`${VITE_REACT_APP_BACKEND_BASEURL}/stocks`);
+                const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/stocks`);
                 // Make sure we're handling the data structure correctly
                 if (response.data && Array.isArray(response.data)) {
                     setStocks(response.data);
