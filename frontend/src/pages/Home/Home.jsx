@@ -2,10 +2,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../../components/Navbar/Navbar';
-import SearchStocks from '../../components/SearchStocks/SearchStocks';
 import './Home.css';
 import logo from './logo.png';
-import stockImage from './StockImage.png';
 
 const Home = () => {
   const [stockData, setStockData] = useState([]);
@@ -52,14 +50,13 @@ const Home = () => {
   const handleNewsletterSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/newsletter/newsletter`, {
+      const response = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/contact/newsletter`, {
         email: newsletterEmail,
         subscriptionType: 'newsletter'
       });
       setSubscriptionMessage('Successfully subscribed to newsletter!');
       setNewsletterEmail('');
     } catch (error) {
-      console.error('Newsletter error:', error);
       setSubscriptionMessage('Failed to subscribe. Please try again.');
     }
   };
@@ -70,16 +67,20 @@ const Home = () => {
       <div className="home-container">
         {/* Hero Section */}
         <section className="hero-section">
-        <div className="hero-content">
-          <h1 className="hero-title">Welcome to MOJK Stocks</h1>
-          <p className="hero-subtitle">Empower your financial journey with us</p>
-          <div className="search-container">
-            <SearchStocks />
-          </div>
+          <div className="hero-content">
+            <h1 className="hero-title">Welcome to MOJK Stocks</h1>
+            <p className="hero-subtitle">Empower your financial journey with us</p>
+            <div className="search-container">
+              <input
+                type="text"
+                placeholder="Search stocks..."
+                className="search-input"
+              />
+            </div>
             <Link to="/stocks">
-            <button className="primary-button">Get Started</button>
+              <button className="primary-button">Get Started</button>
             </Link>
-        </div>
+          </div>
           <div className="logo-container">
             <img id="logo" src={logo} alt="MOJK Stocks logo" />
           </div>
@@ -100,7 +101,7 @@ const Home = () => {
               <div key={index} className="stock-card">
                 <Link to="/stocks">
                   <div className="stock-image">
-                    <img src={stockImage} alt={`${stock.name} stock chart`} />
+                    <span className="image-placeholder">Stock Image</span>
                   </div>
                 </Link>
                 <div className="stock-info">
