@@ -1,0 +1,139 @@
+.search-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 36rem;
+    margin: 0 auto;
+    z-index: 100;
+}
+
+.search-input {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    border: 1px solid #e2e8f0;
+    outline: none;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    background-color: white;
+}
+
+.search-input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.search-dropdown {
+    position: absolute;
+    width: 100%;
+    margin-top: 0.25rem;
+    background-color: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    max-height: 15rem;
+    overflow-y: auto;
+    z-index: 101;
+}
+
+.message {
+    padding: 1rem;
+    text-align: center;
+    color: #4b5563;
+}
+
+.message.error {
+    color: #dc2626;
+}
+
+.message.loading {
+    color: #6b7280;
+}
+
+.message.no-results {
+    color: #6b7280;
+    font-style: italic;
+}
+
+.stock-result {
+    padding: 0.75rem;
+    cursor: pointer;
+    border-bottom: 1px solid #e2e8f0;
+    transition: background-color 0.2s ease;
+}
+
+.stock-result:last-child {
+    border-bottom: none;
+}
+
+.stock-result:hover {
+    background-color: #f3f4f6;
+}
+
+.stock-symbol {
+    font-weight: 500;
+    color: #1f2937;
+    font-size: 1rem;
+}
+
+.stock-details {
+    font-size: 0.875rem;
+    color: #4b5563;
+    margin-top: 0.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stock-change {
+    margin-left: 0.5rem;
+    font-weight: 500;
+}
+
+.stock-change.positive {
+    color: #059669;
+}
+
+.stock-change.negative {
+    color: #dc2626;
+}
+
+  /* Scrollbar Styling */
+.search-dropdown::-webkit-scrollbar {
+    width: 6px;
+}
+
+.search-dropdown::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.search-dropdown::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 3px;
+}
+
+.search-dropdown::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.search-dropdown a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+  /* Mobile Responsiveness */
+@media (max-width: 640px) {
+    .search-wrapper {
+        max-width: 100%;
+    }
+
+    .search-input {
+        font-size: 16px;
+    }
+
+    .stock-result {
+        padding: 0.5rem;
+    }
+}
