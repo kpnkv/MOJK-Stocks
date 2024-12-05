@@ -15,10 +15,6 @@ dotenv.config();
 
 const app = express();
 
-// parses requests body
-app.use(express.json());
-
-
 // Middleware for handling CORS policy
 const corsOptions = {
   origin: `${process.env.FRONTEND_URL}`, // Allow requests only from this origin
@@ -26,6 +22,9 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions)); // Use the specified CORS options
+
+// parses requests body
+app.use(express.json());
 
 app.use(express.urlencoded({extended: false}));
 
