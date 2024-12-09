@@ -61,7 +61,7 @@ app.get('/stocks', (request, response) => {
       const stocks = []; 
 
       $('tbody.body.yf-paf8n5 tr').each((i, element) => {
-        const symbol = $(element).find('a.loud-link.fin-size-medium.yf-1e4diqp').text().trim();
+        const symbol = $(element).find('a.loud-link.fin-size-medium.yf-1xqzjha').text().trim();
         const lastPriceText = $(element).find('td').eq(2).text().trim();
         const lastPrice = lastPriceText.split(' ')[0]; 
 
