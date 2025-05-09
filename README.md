@@ -1,6 +1,6 @@
 # MOJK_Stocks
 
-Group Members:
+Creators:
 - Michael Reifer
 - Owen Segala
 - Jake Dimling
